@@ -25,23 +25,32 @@
   </head>
   <body>
   
-    <!--div class="main-content">
+    <div class="main-content">
         <h1>Dashboard</h1>
-        <div class="search-container">
-            <input type="text" id="SRNo">
-            <button onclick="getDetails()">SEARCH
-				<div class="spinner-border spinner-border-sm d-none" id="loading" role="status">
-					<span class="visually-hidden">Loading...</span>
+		<div class="search-container" style="width : 70%; margin-left : 15%;">
+			<div class="col-10">
+				<div class="input-group mb-3">
+				  <input type="number" class="" id="SRNo" placeholder="SR Number Here"  onclick="changeFilter('srno')">
+				  <input type="email" class="mx-2" id="email" placeholder="Email Here" onclick="changeFilter('email')">
 				</div>
-			</button>
-        </div>
+			</div>
+			<div class="col-2">
+				<button type="button" class="" onclick="getDetails()">
+					SEARCH
+					<div class="spinner-border spinner-border-sm d-none" id="loading" role="status">
+					  <span class="visually-hidden">Loading...</span>
+					</div>
+				</button>
+					
+			</div>
+		</div>
         <div class="details-container">
             <div class="card">
                 <h2 class="text-danger" id="name"></h2>
                 <p><strong>Member ID:</strong> <label id="Memebr_ID"> </label></p>
                 <p><strong>NIC:</strong> <label id="nic"> </label></p>
-                <p><strong>Email:</strong> <label id="email"> </label></p>
-                <p><strong>Mobile:</strong> <label id="mobile"> </label></p>
+                <p><strong>Email:</strong> <label id="email_on_list"> </label></p>
+                <p><strong>Mobile:</strong> <label id="mobile_on_list"> </label></p>
                 <p><strong>Activation:</strong> <label id="activation"> </label></p>
                 <p><strong>Marketplace:</strong> <label id="marketplace"> </label></p>
                 <p><strong>Course Type:</strong> <label id="courseType"> </label></p>
@@ -60,7 +69,7 @@
                 <p><strong>F:</strong> <label id="f"> </label></p>
             </div>
         </div>
-    </div--!>
+    </div>
 		
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.umd.min.js"></script>
 			
