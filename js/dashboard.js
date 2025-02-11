@@ -18,6 +18,9 @@ function getDetails(){
 	document.getElementById("loading").classList.remove("d-none");
 	document.getElementById("ordersSection").classList.add("d-none");
 	
+	document.getElementById("order").innerHTML = "";
+	
+	
 	document.getElementById("name").innerHTML = "";
 	document.getElementById("Memebr_ID").innerHTML = "";
 	document.getElementById("nic").innerHTML = "";
@@ -68,6 +71,7 @@ function getDetails(){
 				for(var x = 0 ; x < resultData.orders.length; x++){
 					document.getElementById("order").innerHTML += "<div class=\"row border-bottom p-2\"><div class=\"col-7\">" + resultData.orders[x].product_name + "</div><div class=\"col-5\">" + resultData.orders[x].create_date + "</div></div>";
 				}
+				console.log(resultData.orders);
 			}
 			else {
 				document.getElementById("loading").classList.add("d-none");
