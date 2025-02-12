@@ -74,8 +74,6 @@ function getDetails(){
 				for(var x = 0 ; x < resultData.orders.length; x++){
 					document.getElementById("order").innerHTML += "<div class=\"row border-bottom p-2\"><div class=\"col-7\">" + resultData.orders[x].product_name + "</div><div class=\"col-5\">" + resultData.orders[x].create_date + "</div></div>";
 				}
-				document.getElementById("SRNo").value = "";
-				document.getElementById("email").value = "";
 				console.log(resultData.orders);
 			}
 			else {
