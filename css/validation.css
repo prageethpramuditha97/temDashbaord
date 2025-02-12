@@ -39,10 +39,11 @@ body {
 }
 
 .form-container input {
-    width: 100%;
-    padding: 12px;
-	margin-left : -12px;
-    margin-bottom: 15px;
+    width: 50px; /* Increased input width */
+    height: 55px; /* Increased input height */
+    font-size: 24px;
+    text-align: center;
+	margin: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -71,13 +72,19 @@ body {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        width: 90%;
+        width: 95%;
     }
+	.form-container {
+		flex: 1;
+		padding: 40px 5px;
+		text-align: center;
+	}
 	.form-container input {
-		width: 100%;
-		padding: 12px;
-		margin-left : 6px;
-		margin-bottom: 15px;
+		width: 11%; /* Increased input width */
+		height: 55px; /* Increased input height */
+		font-size: 24px;
+		text-align: center;
+		margin: 5px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
 	}
