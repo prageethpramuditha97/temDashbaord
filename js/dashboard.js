@@ -77,6 +77,8 @@ function getDetails(){
 				console.log(resultData.orders);
 			}
 			else {
+				document.getElementById("SRNo").value = "";
+				document.getElementById("email").value = "";
 				document.getElementById("loading").classList.add("d-none");
 				alert("No user found");
 			}
