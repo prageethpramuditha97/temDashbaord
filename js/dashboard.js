@@ -131,6 +131,12 @@ async function getSR() {
 					getDetails();
 					document.getElementById("pay_id").value = "";
 				}
+				else {
+					console.log(resultData);
+					document.getElementById("loadingSR").classList.add("d-none");
+					document.getElementById("pay_id").value = "";
+					alert("Payment Slip Not Uploaded");
+				}
 			}
 			else {
 				document.getElementById("loadingSR").classList.add("d-none");
