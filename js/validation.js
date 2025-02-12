@@ -1,4 +1,4 @@
-if(localStorage.getItem("login_obj_office_OS.eclub.lk") == "" || localStorage.getItem("login_obj_office_OS.eclub.lk") == null){
+if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
 	window.location.href= "./index.html";
 }
 function AddZero(num) {
