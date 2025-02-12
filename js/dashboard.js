@@ -152,9 +152,19 @@ async function getSR() {
 
 window.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    getDetails();
-  }
+	if (event.key === "Enter") {
+		if(document.getElementById("pay_id").value == ""){
+			if(document.getElementById("SRNo").value == "" && document.getElementById("email").value == ""){
+				
+			}
+			else {
+				getDetails();
+			}
+		}
+		else{
+			getSR();
+		}
+	}
   
 });
 
