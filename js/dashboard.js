@@ -109,6 +109,37 @@ function changeFilter(id){
 	}*/
 }
 
+async function getSR() {
+	var pay_id = document.getElementById("pay_id").value;
+	document.getElementById("loadingSR").classList.remove("d-none");
+	const url = server + "api/accounts";
+	var obj = new Object({ 
+		"pay_id" : pay_id,
+	});
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data : obj,
+		success: function(resultData) {
+			if(resultData != 'No user details were found.'){
+				document.getElementById("loadingSR").classList.add("d-none");
+				document.getElementById("SRNo").value = resultData.username.match(/\d/g).join("");
+				changeFilter('srno');
+				getDetails();
+				document.getElementById("pay_id").value = "";
+			}
+			else {
+				document.getElementById("loadingSR").classList.add("d-none");
+				document.getElementById("pay_id").value = "";
+				alert("No user found");
+			}
+		},
+        error: function (error) {
+            console.log(error);
+        }
+	});
+}
+
 window.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
