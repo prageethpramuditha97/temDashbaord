@@ -83,5 +83,3 @@ function getTimeNow() {
         now.getHours() >= 12 ? "PM" : "AM"].join(" ");
 	return strDateTime;
 };
-
-alert(getTimeNow());

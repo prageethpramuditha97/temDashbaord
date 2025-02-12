@@ -1,6 +1,27 @@
-/*if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
 	window.location.href= "./index.html";
-}*/
+}
+
+function AddZero(num) {
+    return (num >= 0 && num < 10) ? "0" + num : num + "";
+}
+
+function getTimeNow() {
+    var now = new Date();
+    var strDateTime = [[AddZero(now.getDate()), 
+        AddZero(now.getMonth() + 1), 
+        now.getFullYear()].join("/"), 
+        [AddZero(now.getHours()), 
+        AddZero(now.getMinutes())].join(":"), 
+        now.getHours() >= 12 ? "PM" : "AM"].join(" ");
+	return strDateTime;
+};
+
+if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
+	localStorage.removeItem("login_obj_for_validate_cco4");
+	window.location.reload();
+}
+
 var filter = "srno";
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
@@ -22,7 +43,7 @@ function getDetails(){
 	document.getElementById("ordersSection").classList.add("d-none");
 	
 	document.getElementById("order").innerHTML = "";
-	
+	document.getElementById("msg").innerHTML = "";
 	
 	document.getElementById("name").innerHTML = "";
 	document.getElementById("Memebr_ID").innerHTML = "";
@@ -93,9 +114,15 @@ function getDetails(){
 function changeFilter(id){
 	if(id == "srno"){
 		document.getElementById('email').value = "";
+		document.getElementById('pay_id').value = "";
 	}
 	if(id == "email"){
 		document.getElementById('SRNo').value = "";
+		document.getElementById('pay_id').value = "";
+	}
+	if(id == "ref"){
+		document.getElementById('SRNo').value = "";
+		document.getElementById('email').value = "";
 	}
 	//document.getElementById(filter).classList.remove("btn-success");
 	filter = id;
@@ -112,6 +139,7 @@ function changeFilter(id){
 }
 
 async function getSR() {
+	document.getElementById("msg").innerHTML = "";
 	var pay_id = document.getElementById("pay_id").value;
 	document.getElementById("loadingSR").classList.remove("d-none");
 	const url = server + "api/accounts";
@@ -135,13 +163,13 @@ async function getSR() {
 					console.log(resultData);
 					document.getElementById("loadingSR").classList.add("d-none");
 					document.getElementById("pay_id").value = "";
-					alert("Payment Slip Not Uploaded");
+					document.getElementById("msg").innerHTML = "Payment Slip Not Uploaded Yet";
 				}
 			}
 			else {
 				document.getElementById("loadingSR").classList.add("d-none");
 				document.getElementById("pay_id").value = "";
-				alert("No user found");
+				document.getElementById("msg").innerHTML = "Invalid Payment Reference Number";
 			}
 		},
         error: function (error) {

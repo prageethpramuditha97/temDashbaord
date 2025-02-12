@@ -15,10 +15,6 @@
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 	
-    
-		<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
-		
 		<link rel="stylesheet" href="./css/style.css">
 	
     <title>Office Management</title>
@@ -29,18 +25,12 @@
 		<div class="" style="width : 80%; margin-left : 10%;">
 			<div class="row">
 				<div class="col-5">
-					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="SRNo">
-					  <label for="floatingInput">SR Number</label>
-					</div>
+					<input type="number" class="form-control" id="SRNo" placeholder="SR Number" onclick="changeFilter('srno')">
 				</div>
 				<div class="col-5">
-					<div class="form-floating mb-3">
-					  <input type="email" class="form-control" id="email">
-					  <label for="floatingInput">Email</label>
-					</div>
+					<input type="email" class="form-control" id="email" placeholder="Email Address" onclick="changeFilter('email')">
 				</div>
-				<div class="col-2 mt-2">
+				<div class="col-2">
 					<button type="button" class="btn btn-primary w-100" onclick="getDetails()">
 						SEARCH
 						<div class="spinner-border spinner-border-sm d-none" id="loading" role="status">
@@ -50,15 +40,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="mt-2" style="width : 40%; margin-left : 30%;">
+		<hr/>
+		<div class="mt-4 mt-2" style="width : 40%; margin-left : 30%;">
 			<div class="row">
 				<div class="col-8">
-					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="pay_id">
-					  <label for="floatingInput">Payment Reference</label>
-					</div>
+					<input type="number" class="form-control" id="pay_id" placeholder="Payment Reference" onclick="changeFilter('ref')">
 				</div>
-				<div class="col-4 mt-2">
+				<div class="col-4">
 					<button type="button" class="btn btn-warning w-100" onclick="getSR()">
 						GET SR NUMBER
 						<div class="spinner-border spinner-border-sm d-none" id="loadingSR" role="status">
@@ -68,7 +56,9 @@
 				</div>
 			</div>
 		</div>
-        <div class="details-container mt-4">
+		<hr/>
+		<h6 class="p-2" style="color : red;" id="msg"></h6>
+        <div class="details-container mt-2">
             <div class="card">
                 <h2 class="text-danger" id="name"></h2>
                 <p><strong>Member ID:</strong> <label id="Memebr_ID"> </label></p>
@@ -88,7 +78,7 @@
 					<p><strong>H:</strong> <label id="h"> </label></p>
 					<p><strong>F:</strong> <label id="f"> </label></p>
 				</div>
-				<div class="p-3 d-none" id="ordersSection" style="background-color : #ECFFDC">
+				<div class="p-3 d-none scrollbar" id="ordersSection" style="background-color : #ECFFDC">
 					<h6 class="text-primary">Orders List</h6>
 					<div id="order"></div>
 				</div>

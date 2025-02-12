@@ -1,7 +1,11 @@
-		
+		body {
+    font-family: Arial, sans-serif;
+    margin-top " 10%;
+    height: 100vh;
+    background: #f3f3f3;
+}
         .main-content {
             width: 100%;
-            background: white;
             padding: 25px;
             border-radius: 20px;
             text-align: center;
@@ -23,7 +27,6 @@
         .card {
             flex: 1;
             min-width: 300px;
-            background: #fff;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -42,3 +45,25 @@
                 align-items: center;
             }
         }
+		
+.scrollbar
+{
+	height : 35vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#ordersSection::-webkit-scrollbar-track
+{
+}
+
+#ordersSection::-webkit-scrollbar
+{
+	width: 6px;
+}
+
+#ordersSection::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #000000;
+}
