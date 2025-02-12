@@ -124,11 +124,13 @@ async function getSR() {
 		data : obj,
 		success: function(resultData) {
 			if(resultData != 'No user details were found.'){
-				document.getElementById("loadingSR").classList.add("d-none");
-				document.getElementById("SRNo").value = resultData.username.match(/\d/g).join("");
-				changeFilter('srno');
-				getDetails();
-				document.getElementById("pay_id").value = "";
+				if(resultData.username != null){	
+					document.getElementById("loadingSR").classList.add("d-none");
+					document.getElementById("SRNo").value = resultData.username.match(/\d/g).join("");
+					changeFilter('srno');
+					getDetails();
+					document.getElementById("pay_id").value = "";
+				}
 			}
 			else {
 				document.getElementById("loadingSR").classList.add("d-none");
