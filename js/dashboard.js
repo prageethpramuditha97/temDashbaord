@@ -1,6 +1,6 @@
-if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+/*if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
 	window.location.href= "./index.html";
-}
+}*/
 var filter = "srno";
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
