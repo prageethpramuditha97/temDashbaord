@@ -1,3 +1,15 @@
+if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+	
+}
+else {
+	if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
+		
+	}
+	else {
+		window.location.href= "./Dashboard.html";
+	}
+}
+
 function AddZero(num) {
     return (num >= 0 && num < 10) ? "0" + num : num + "";
 }
