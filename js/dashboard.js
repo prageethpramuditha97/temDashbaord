@@ -142,6 +142,25 @@ async function getSR() {
 	document.getElementById("msg").innerHTML = "";
 	var pay_id = document.getElementById("pay_id").value;
 	document.getElementById("loadingSR").classList.remove("d-none");
+	
+	document.getElementById("name").innerHTML = "";
+	document.getElementById("Memebr_ID").innerHTML = "";
+	document.getElementById("nic").innerHTML = "";
+	document.getElementById("email_on_list").innerHTML = "";
+	document.getElementById("mobile_on_list").innerHTML = "";
+	document.getElementById("activation").innerHTML = "";
+	document.getElementById("marketplace").innerHTML = "";
+	document.getElementById("courseType").innerHTML = "";
+	document.getElementById("Medium").innerHTML = "";
+			
+	document.getElementById("j").innerHTML = "";
+	document.getElementById("a").innerHTML = "";
+	document.getElementById("h").innerHTML = "";
+	document.getElementById("f").innerHTML = "";
+			
+	document.getElementById("Sponser").innerHTML = "";
+	document.getElementById("Sponser_Name").innerHTML = "";
+	
 	const url = server + "api/accounts";
 	var obj = new Object({ 
 		"pay_id" : pay_id,
