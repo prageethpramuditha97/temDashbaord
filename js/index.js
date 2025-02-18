@@ -3,7 +3,10 @@ if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.get
 }
 else {
 	if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
-		
+		var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4"));
+		if(obj.username == "CCO2380" || obj.username == "CCO277065"){
+			window.location.href= "./Dashboard.html";
+		}
 	}
 	else {
 		window.location.href= "./Dashboard.html";
