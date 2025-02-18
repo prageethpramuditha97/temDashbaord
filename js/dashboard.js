@@ -18,8 +18,14 @@ function getTimeNow() {
 };
 
 if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
-	localStorage.removeItem("login_obj_for_validate_cco4");
-	window.location.reload();
+	var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4");
+	if(obj.username == "CCO2380" || obj.username == "CCO277065"){
+		
+	}
+	else {
+		localStorage.removeItem("login_obj_for_validate_cco4");
+		window.location.reload();
+	}
 }
 
 var filter = "srno";
