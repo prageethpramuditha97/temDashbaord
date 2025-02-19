@@ -177,6 +177,7 @@ async function getSR() {
 		data : obj,
 		success: function(resultData) {
 			if(resultData != 'No user details were found.'){
+				console.log(resultData);
 				if(resultData.username != null){	
 					document.getElementById("loadingSR").classList.add("d-none");
 					document.getElementById("SRNo").value = resultData.username.match(/\d/g).join("");
@@ -185,7 +186,6 @@ async function getSR() {
 					document.getElementById("pay_id").value = "";
 				}
 				else {
-					console.log(resultData);
 					document.getElementById("loadingSR").classList.add("d-none");
 					document.getElementById("pay_id").value = "";
 					if(resultData.files.length > 0){
