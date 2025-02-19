@@ -188,7 +188,14 @@ async function getSR() {
 					console.log(resultData);
 					document.getElementById("loadingSR").classList.add("d-none");
 					document.getElementById("pay_id").value = "";
-					document.getElementById("msg").innerHTML = "Payment Slip Not Uploaded Yet";
+					if(resultData.file.length > 0){
+						document.getElementById("msg").innerHTML = "Payment Slip Uploaded. Activation is Pending.";
+					}
+					else {
+						document.getElementById("msg").innerHTML = "Payment Slip Not Uploaded Yet";
+					}
+					
+					
 				}
 			}
 			else {
