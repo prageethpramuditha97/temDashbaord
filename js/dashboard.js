@@ -203,7 +203,6 @@ function getDetails(){
 	
 			}
 			else {
-				document.getElementById("SRNo").value = "";
 				document.getElementById("loading").classList.add("hidden");
 				alert("No user found");
 			}
