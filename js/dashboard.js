@@ -1,107 +1,206 @@
-if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+/*if(localStorage.getItem("login_obj_office_OS.eclub.lk") == "" || localStorage.getItem("login_obj_office_OS.eclub.lk") == null){
 	window.location.href= "./index.html";
 }
+else {
+	data = JSON.parse(localStorage.getItem("login_obj_office_OS.eclub.lk"));
+	
+	/*if(data[1].ID == "OS003"){
+		document.getElementById("profile_pic").src = "../images/prageeth.jpg";
+	}
+	if(data[1].ID == "OS004"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/sasanthi.png?alt=media&token=493ff9dc-bdbc-4746-9dc8-12dbab87cf23";
+	}
+	if(data[1].ID == "OS005"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/lakshan.png?alt=media&token=4dd48f65-7cd8-41d6-97e3-c3b1d59ea4ae";
+	}
+	if(data[1].ID == "OS006"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/thiwanka.png?alt=media&token=dfa96497-1783-4d8a-ae3c-4dc57076ed3b";
+	}
+	if(data[1].ID == "OS007"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/sudeshini.png?alt=media&token=13f29309-6658-47f4-bb71-42acef20a9f0";
+	}
+	if(data[1].ID == "OS008"){
+		document.getElementById("profile_pic").src = "";
+	}
+	if(data[1].ID == "OS009"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/charith.png?alt=media&token=1bb9c458-f584-4275-9bcd-df6e376f7aec";
+	}
+	if(data[1].ID == "OS010"){
+		document.getElementById("profile_pic").src = "https://firebasestorage.googleapis.com/v0/b/eclubhr-ffe79.appspot.com/o/randika.png?alt=media&token=3f8ee6b6-1f2a-4a6f-aa66-b0ecf3c6ea9a";
+	}
+	document.getElementById('loggin_name').innerHTML =  data[1].FullName;
+	document.getElementById('logginID').innerHTML =  data[1].ID;
+	
+}*/
 
-function AddZero(num) {
-    return (num >= 0 && num < 10) ? "0" + num : num + "";
+function toggleDropdown() {
+    const menu = document.getElementById("dropdown-menu");
+    const icon = document.getElementById("dropdown-icon");
+
+    if (menu.classList.contains("max-h-0")) {
+        menu.classList.remove("max-h-0", "opacity-0");
+        menu.classList.add("max-h-60", "opacity-100");
+        icon.classList.add("rotate-180");
+    } else {
+        menu.classList.remove("max-h-60", "opacity-100");
+        menu.classList.add("max-h-0", "opacity-0");
+        icon.classList.remove("rotate-180");
+    }
 }
-
-function getTimeNow() {
-    var now = new Date();
-    var strDateTime = [[AddZero(now.getDate()), 
-        AddZero(now.getMonth() + 1), 
-        now.getFullYear()].join("/"), 
-        [AddZero(now.getHours()), 
-        AddZero(now.getMinutes())].join(":"), 
-        now.getHours() >= 12 ? "PM" : "AM"].join(" ");
-	return strDateTime;
-};
-
-if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
-	var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4"));
-	if(obj.username == "CCO2380" || obj.username == "CCO277065"){
 		
-	}
-	else {
-		localStorage.removeItem("login_obj_for_validate_cco4");
-		window.location.reload();
-	}
+function resetUI(){
+	document.getElementById("std_name").innerHTML = "<div class=\"h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2\"></div>";
+	document.getElementById("std_sr").innerHTML = "<div class=\"h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-12 mb-2\"></div>";
+	
+	document.getElementById("spnsr_name").innerHTML = "<div class=\"h-2.5 bg-gray-200 rounded-full w-48 mb-2 animate-pulse \"></div>";
+	document.getElementById("spnsr_cco").innerHTML = "<div class=\"h-2 bg-gray-200 rounded-full w-28 mb-2  animate-pulse \"></div>";
+	
+	document.getElementById("std_avtivation").innerHTML = "";
+	document.getElementById("std_marketplace").innerHTML = "";
+	document.getElementById("spnsr_placement").innerHTML = "";
+	
+	document.getElementById("std_profile").src = "https://static.vecteezy.com/system/resources/thumbnails/025/337/669/small_2x/default-male-avatar-profile-icon-social-media-chatting-online-user-free-vector.jpg"; 
+	document.getElementById("spnsr_profile").src = "https://static.vecteezy.com/system/resources/thumbnails/025/337/669/small_2x/default-male-avatar-profile-icon-social-media-chatting-online-user-free-vector.jpg"; 
+	
+	document.getElementById("lvl1").innerHTML = "-- -- ----";
+	document.getElementById("lvl2").innerHTML = "-- -- ----";
+	document.getElementById("lvl3").innerHTML = "-- -- ----";
+	document.getElementById("lvl4").innerHTML = "-- -- ----";
+	updateProgress(0);
 }
 
-var filter = "srno";
+resetUI();
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
 function getDetails(){
+	resetUI();
 	var url = server + "api/student_info/"
-	var sr = "";
-	if(filter == "srno"){
-		sr = document.getElementById("SRNo").value;
-	}
-	if(filter == "email"){
-		sr = document.getElementById("email").value;
-	}
+	input = document.getElementById("input").value;
+	filter = document.getElementById("filter").value;
+	
+	let spinner = document.getElementById("loadingSpinner");
+    spinner.classList.remove("hidden");
 	
 	var obj = {
-		"SR_no" : sr,
+		"SR_no" : input,
 		"type" : filter,
 	}
-	document.getElementById("loading").classList.remove("d-none");
-	document.getElementById("ordersSection").classList.add("d-none");
-	
-	document.getElementById("order").innerHTML = "";
-	document.getElementById("msg").innerHTML = "";
-	
-	document.getElementById("name").innerHTML = "";
-	document.getElementById("Memebr_ID").innerHTML = "";
-	document.getElementById("nic").innerHTML = "";
-	document.getElementById("email_on_list").innerHTML = "";
-	document.getElementById("mobile_on_list").innerHTML = "";
-	document.getElementById("activation").innerHTML = "";
-	document.getElementById("marketplace").innerHTML = "";
-	document.getElementById("courseType").innerHTML = "";
-	document.getElementById("Medium").innerHTML = "";
-			
-	document.getElementById("j").innerHTML = "";
-	document.getElementById("a").innerHTML = "";
-	document.getElementById("h").innerHTML = "";
-	document.getElementById("f").innerHTML = "";
-			
-	document.getElementById("Sponser").innerHTML = "";
-	document.getElementById("Sponser_Name").innerHTML = "";
-			
-			
-			
+		
 	$.ajax({
 		type: 'POST',
 		url: url,
 		data : obj,
 		success: function(resultData) {
-			console.log(resultData);
+			//document.getElementById("accountsList").innerHTML  = "";
 			if(resultData != 'No user details were found.'){
-				var fullName = resultData.firstname.charAt(0).toUpperCase() + resultData.firstname.slice(1) + " " + resultData.lastname.charAt(0).toUpperCase() + resultData.lastname.slice(1);
-				document.getElementById("name").innerHTML = fullName;
-				document.getElementById("Memebr_ID").innerHTML = resultData.username;
-				document.getElementById("nic").innerHTML = resultData.nic;
-				document.getElementById("email_on_list").innerHTML = resultData.email;
-				document.getElementById("mobile_on_list").innerHTML = resultData.mobile;
-				document.getElementById("activation").innerHTML = resultData.subscription;
-				document.getElementById("marketplace").innerHTML = resultData.marketplace;
-				document.getElementById("courseType").innerHTML = resultData.class_type;
-				document.getElementById("Medium").innerHTML = resultData.medium;
+				spinner.classList.add("hidden");
+				document.getElementById("std_sr").innerHTML = resultData.username;
+				document.getElementById("std_name").innerHTML = resultData.firstname + " " + resultData.lastname;
+				document.getElementById("std_avtivation").innerHTML = resultData.subscription;
 				
-				document.getElementById("j").innerHTML = resultData.join_date;
-				document.getElementById("a").innerHTML = resultData.activation_date ;
-				document.getElementById("h").innerHTML = resultData.half_act_date;
-				document.getElementById("f").innerHTML = resultData.full_act_date;
-				
-				document.getElementById("Sponser").innerHTML = "CCO" + resultData.sponsor;
-				document.getElementById("Sponser_Name").innerHTML = resultData.sponsor_name;
-				document.getElementById("loading").classList.add("d-none");
-				document.getElementById("ordersSection").classList.remove("d-none");
-				for(var x = 0 ; x < resultData.orders.length; x++){
-					document.getElementById("order").innerHTML += "<div class=\"row border-bottom p-2\"><div class=\"col-7\">" + resultData.orders[x].product_name + "</div><div class=\"col-5\">" + resultData.orders[x].create_date + "</div></div>";
+				document.getElementById("std_avtivation").classList.remove("bg-green-100");
+				document.getElementById("std_avtivation").classList.remove("text-green-800");
+				document.getElementById("std_avtivation").classList.remove("bg-yellow-100");
+				document.getElementById("std_avtivation").classList.remove("text-yellow-800");
+				document.getElementById("std_avtivation").classList.remove("bg-red-100");
+				document.getElementById("std_avtivation").classList.remove("text-red-800");
+				if(resultData.subscription == "full"){
+					document.getElementById("std_avtivation").classList.add("bg-green-100");
+					document.getElementById("std_avtivation").classList.add("text-green-800");
+										
+					updateProgress(4); 
+					
+					document.getElementById("lvl1").innerHTML = resultData.join_date.split(" ")[0];
+					document.getElementById("lvl2").innerHTML = resultData.activation_date.split(" ")[0];
+					if(resultData.half_act_date != null){
+						document.getElementById("lvl3").innerHTML = resultData.half_act_date.split(" ")[0];
+					}
+					document.getElementById("lvl4").innerHTML = resultData.full_act_date.split(" ")[0];
+					
+					
 				}
-				console.log(resultData.orders);
+				if(resultData.subscription == "half"){
+					document.getElementById("std_avtivation").classList.add("bg-yellow-100");
+					document.getElementById("std_avtivation").classList.add("text-yellow-800");
+					document.getElementById("std_profile_section").innerHTML += `<button class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-800 transition duration-300 ms-4" onclick="deletePayID(${resultData.payid})">
+																				<i class="fa fa-credit-card"></i>
+																			</button>`;
+					updateProgress(3); 
+					
+					document.getElementById("lvl1").innerHTML = resultData.join_date.split(" ")[0];
+					document.getElementById("lvl2").innerHTML = resultData.activation_date.split(" ")[0];
+					document.getElementById("lvl3").innerHTML = resultData.half_act_date.split(" ")[0];
+					
+				}
+				if(resultData.subscription == "pending"){
+					document.getElementById("std_avtivation").classList.add("bg-red-100");
+					document.getElementById("std_avtivation").classList.add("text-red-800");
+					document.getElementById("std_profile_section").innerHTML += `<button class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-800 transition duration-300 ms-4" onclick="deletePayID(${resultData.payid})">
+																				<i class="fa fa-credit-card"></i>
+																			</button>`;
+					if(resultData.join_date != null){
+						document.getElementById("lvl1").innerHTML = resultData.join_date.split(" ")[0];
+					}
+					else {
+						document.getElementById("lvl1").innerHTML = resultData.created_date.split(" ")[0];
+					}
+					updateProgress(1); 
+				}
+				document.getElementById("std_marketplace").innerHTML = resultData.marketplace; 
+				
+				document.getElementById("spnsr_name").innerHTML = resultData.sponsor_name; 
+				document.getElementById("spnsr_cco").innerHTML = "CCO" + resultData.sponsor; 
+				document.getElementById("spnsr_placement").innerHTML = "Placement : " + resultData.placement_id; 
+				
+				
+				checkImageURL(resultData.profile_image).then((isAccessible) => {
+					if (isAccessible) {
+						document.getElementById("std_profile").src = resultData.profile_image; 
+					} else {
+						document.getElementById("std_profile").src = "https://static.vecteezy.com/system/resources/thumbnails/025/337/669/small_2x/default-male-avatar-profile-icon-social-media-chatting-online-user-free-vector.jpg"; 
+					}
+				});	
+
+				document.getElementById("order_list").innerHTML = "";
+				
+				
+				document.getElementById("username").innerHTML = resultData.username + "<span class=\"bg-blue-100 text-blue-800 text-xs font-medium me-2 ms-4 px-2.5 py-0.5 rounded-full\">Pay ID : " + resultData.payid + "</span>"; 
+				document.getElementById("full_name").innerHTML = resultData.firstname + " " + resultData.lastname; 
+				document.getElementById("marketplace").innerHTML = resultData.marketplace; 
+				document.getElementById("medium").innerHTML = resultData.medium; 
+				document.getElementById("contact_number").innerHTML = resultData.mobile; 
+				document.getElementById("nic").innerHTML = resultData.nic; 
+				document.getElementById("email").innerHTML = resultData.email; 
+				document.getElementById("grp").innerHTML = resultData.team; 
+				
+				document.getElementById("dob").innerHTML = resultData.dob; 
+				document.getElementById("gender").innerHTML = resultData.gender; 
+				
+				
+				
+				for(var b = 0 ; b < resultData.orders.length; b++){
+					if(resultData.orders[b].notes != ""){
+						document.getElementById("order_list").innerHTML += `
+						  <li class="p-4 flex flex-col justify-between items-start hover:bg-gray-50 transition">
+							<div class="flex justify-between w-full">
+							  <span class="font-semibold text-gray-900">${resultData.orders[b].product_name}</span>
+							  <span class="text-sm text-gray-500 text-end">${resultData.orders[b].create_date}</span>
+							</div>
+							<div class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+							  ${resultData.orders[b].notes}
+							</div>
+						  </li>`;
+					}
+					else{
+						document.getElementById("order_list").innerHTML +=	"<li class=\"p-4 flex justify-between items-center hover:bg-gray-50 transition\">" +
+									"	<span class=\"font-semibold text-gray-900\">" + resultData.orders[b].product_name + "</span>" +
+									"	<span class=\"text-sm text-gray-500 text-end\">" + resultData.orders[b].create_date + "</span>" +
+									"</li>";
+					}
+					
+				}
+				
+	
 			}
 			else {
 				document.getElementById("SRNo").value = "";
@@ -115,124 +214,104 @@ function getDetails(){
 			console.log(error);
 		}
 	});
+	
+	
 }
 
-function changeFilter(id){
-	if(id == "srno"){
-		document.getElementById('email').value = "";
-		document.getElementById('pay_id').value = "";
-	}
-	if(id == "email"){
-		document.getElementById('SRNo').value = "";
-		document.getElementById('pay_id').value = "";
-	}
-	if(id == "ref"){
-		document.getElementById('SRNo').value = "";
-		document.getElementById('email').value = "";
-	}
-	//document.getElementById(filter).classList.remove("btn-success");
-	filter = id;
-	//document.getElementById(filter).classList.add("btn-success");
-	/*if (event.key === "S") {
-		console.log(filterList[filter]);
-		document.getElementById(filterList[filter]).classList.remove("selected_filter");
-		filter = filter + 1;
-		if(filter == 3){
-			filter = 0;
-		}
-		document.getElementById(filterList[filter]).classList.add("selected_filter");
-	}*/
-}
+// Function to update the progress bar and step circles
+function updateProgress(completedSteps) {
+	//get all steps borders
+	let borders = [document.getElementById("step-1T"), document.getElementById("step-2T"), document.getElementById("step-3T"), document.getElementById("step-4T")];
+    // Get all step circles
+    let steps = [document.getElementById("step-1"), document.getElementById("step-2"), document.getElementById("step-3"), document.getElementById("step-4")];
 
-async function getSR() {
-	document.getElementById("msg").innerHTML = "";
-	var pay_id = document.getElementById("pay_id").value;
-	document.getElementById("loadingSR").classList.remove("d-none");
-	
-	document.getElementById("name").innerHTML = "";
-	document.getElementById("Memebr_ID").innerHTML = "";
-	document.getElementById("nic").innerHTML = "";
-	document.getElementById("email_on_list").innerHTML = "";
-	document.getElementById("mobile_on_list").innerHTML = "";
-	document.getElementById("activation").innerHTML = "";
-	document.getElementById("marketplace").innerHTML = "";
-	document.getElementById("courseType").innerHTML = "";
-	document.getElementById("Medium").innerHTML = "";
-			
-	document.getElementById("j").innerHTML = "";
-	document.getElementById("a").innerHTML = "";
-	document.getElementById("h").innerHTML = "";
-	document.getElementById("f").innerHTML = "";
-			
-	document.getElementById("Sponser").innerHTML = "";
-	document.getElementById("Sponser_Name").innerHTML = "";
-	
-	const url = server + "api/accounts";
-	var obj = new Object({ 
-		"pay_id" : pay_id,
-	});
-	$.ajax({
-		type: 'POST',
-		url: url,
-		data : obj,
-		success: function(resultData) {
-			if(resultData != 'No user details were found.'){
-				console.log(resultData);
-				if(resultData.username != null){	
-					document.getElementById("loadingSR").classList.add("d-none");
-					document.getElementById("SRNo").value = resultData.username.match(/\d/g).join("");
-					changeFilter('srno');
-					getDetails();
-					document.getElementById("pay_id").value = "";
-				}
-				else {
-					document.getElementById("loadingSR").classList.add("d-none");
-					document.getElementById("pay_id").value = "";
-					if(resultData.files.length > 0){
-						document.getElementById("msg").innerHTML = "Payment Slip Uploaded. Activation is Pending.";
-					}
-					else {
-						document.getElementById("msg").innerHTML = "Payment Slip Not Uploaded Yet";
-					}
-					
-					
-				}
-			}
-			else {
-				document.getElementById("loadingSR").classList.add("d-none");
-				document.getElementById("pay_id").value = "";
-				document.getElementById("msg").innerHTML = "Invalid Payment Reference Number";
-			}
-		},
-        error: function (error) {
-            console.log(error);
+	// Loop through and update step circle colors
+    borders.forEach((borders, index) => {
+        if (index < completedSteps) {
+            borders.classList.remove("border-gray-200");
+            borders.classList.add("border-green-600");
+        } else {
+            borders.classList.remove("border-green-600");
+            borders.classList.add("border-gray-200");
         }
-	});
+    });
+	
+    // Loop through and update step circle colors
+    steps.forEach((step, index) => {
+        if (index < completedSteps) {
+            step.classList.remove("bg-gray-200");
+            step.classList.add("bg-gradient-to-r" , "from-green-600", "to-green-400");
+        } else {
+            step.classList.remove("bg-gradient-to-r" , "from-green-600", "to-green-400");
+            step.classList.add("bg-gray-200");
+        }
+    });
+}
+
+// Example Usage - Change the number inside updateProgress(n) to see updates dynamically
+updateProgress(0); // Updates step 1 & 2 to green, keeps the rest gray
+
+var tabs = [
+	"activation_tab",
+	"basic_ifo_tab",
+	"orders_tab",
+	"interview_details_tab",
+	"teligram_grps_tab",
+]
+
+
+var divs = [
+	"activation_details",
+	"basic_info",
+	"order_details",
+	"interview_details",
+	"teligram_grps",
+]
+
+function viewDetails(tabid , divId){
+	for(var a = 0; a < tabs.length; a++){
+		document.getElementById(tabs[a]).classList.remove("text-blue-600" , "border-blue-600" , "active");
+		document.getElementById(tabs[a]).classList.add("border-transparent" , "hover:text-gray-600" , "hover:border-gray-300");
+		
+	}
+	document.getElementById(tabid).classList.add("text-blue-600" , "border-blue-600" , "active");
+	document.getElementById(tabid).classList.remove("border-transparent" , "hover:text-gray-600" , "hover:border-gray-300");
+	
+	for(var b = 0; b < divs.length; b++){
+		document.getElementById(divs[b]).classList.add("hidden");
+	}
+	document.getElementById(divId).classList.remove("hidden");
+	
+}
+
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    let menuBtn = document.getElementById("menu-btn");
+
+    sidebar.classList.toggle("-translate-x-full");
+
+    // Hide menu button when sidebar is open
+    if (!sidebar.classList.contains("-translate-x-full")) {
+        menuBtn.classList.add("hidden");
+    } else {
+        menuBtn.classList.remove("hidden");
+    }
+}
+
+function checkImageURL(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+
+        img.onload = () => resolve(true);  // Image loaded successfully
+        img.onerror = () => resolve(false); // Error loading image
+    });
 }
 
 window.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
 	if (event.key === "Enter") {
-		if(document.getElementById("pay_id").value == ""){
-			if(document.getElementById("SRNo").value == "" && document.getElementById("email").value == ""){
-				
-			}
-			else {
-				getDetails();
-			}
-		}
-		else{
-			getSR();
-		}
+		getDetails();
 	}
   
 });
-
-//getDetails(obj);
-
-function copy(elm){
-	// Get the text field
-	var copyText = document.getElementById(elm);
-	// Copy the text inside the text field
-	navigator.clipboard.writeText(copyText.innerHTML);
-}
