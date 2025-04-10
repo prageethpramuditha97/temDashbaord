@@ -203,7 +203,7 @@ function getDetails(){
 	
 			}
 			else {
-				document.getElementById("loading").classList.add("hidden");
+				spinner.classList.add("hidden");
 				alert("No user found");
 			}
 			
