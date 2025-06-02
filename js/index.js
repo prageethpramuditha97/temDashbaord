@@ -103,6 +103,7 @@ function validateEmail(){
 						document.getElementById("loading").classList.add("d-none");
 					}
 					else {
+						document.getElementById("loading").classList.add("d-none");
 						alert("Access Denied");
 					}
 					
