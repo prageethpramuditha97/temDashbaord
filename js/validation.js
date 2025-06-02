@@ -66,7 +66,7 @@ function moveNext(input, index) {
 			success: function(resultData) {
 				document.getElementById("loading").classList.add("d-none");
 				if(resultData){
-					window.location.href = "./Dashboard.html";
+					window.location.href = "./dashboard.html";
 				}
 				else {
 					document.getElementById("msg").innerHTML = "Invalid OTP";
