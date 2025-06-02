@@ -1,4 +1,4 @@
-if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+/*if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
 	
 }
 else {
@@ -12,7 +12,11 @@ else {
 		window.location.href= "./New/Dashboard.html";
 	}
 }
-
+*/
+var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4"));
+if(obj.username == "CCO2380" || obj.username == "CCO277065"){
+	window.location.href= "./New/Dashboard.html";
+}
 
 
 function AddZero(num) {
