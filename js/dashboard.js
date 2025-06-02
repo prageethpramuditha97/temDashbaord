@@ -1,7 +1,8 @@
-/*if(localStorage.getItem("login_obj_office_OS.eclub.lk") == "" || localStorage.getItem("login_obj_office_OS.eclub.lk") == null){
-	window.location.href= "./index.html";
+if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+	window.location.href= "../index.html";
 }
-else {
+
+/*else {
 	data = JSON.parse(localStorage.getItem("login_obj_office_OS.eclub.lk"));
 	
 	/*if(data[1].ID == "OS003"){
