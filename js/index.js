@@ -72,7 +72,7 @@ const ccoCodes = [
 //pasidu818@gmail.com //invalid
 
 function findSR(id){
-	return ccoCodes.includes(id);
+	return ccoCodes.includes("CCO" + id);
 }
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
