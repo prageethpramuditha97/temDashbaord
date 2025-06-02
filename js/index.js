@@ -76,15 +76,14 @@ const ccoCodes = [
 //pasidu818@gmail.com //invalid
 
 function findSR(id){
-	console.log(id);
-	return ccoCodes.includes("CCO" + id);
+	return ccoCodes.includes(id);
 }
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
 function validateEmail(){
 	var url = server + "api/student_info/"
 	
-	if(findSR(document.getElementById("email").value)){
+	//if(findSR(document.getElementById("email").value)){
 		var obj = {
 			"SR_no" : document.getElementById("email").value,
 			"type" : "email",
@@ -97,10 +96,16 @@ function validateEmail(){
 			data : obj,
 			success: function(resultData) {
 				if(resultData != 'No user details were found.' && resultData.username.replace(/[0-9]/g, '') == "CCO"){
-					localStorage.setItem("login_obj_for_validate_cco4", JSON.stringify(resultData));
-					localStorage.setItem("login_obj_for_validate_cco4_time", getTimeNow());
-					sendOTP();
-					document.getElementById("loading").classList.add("d-none");
+					if(findSR(resultData.username)){
+						localStorage.setItem("login_obj_for_validate_cco4", JSON.stringify(resultData));
+						localStorage.setItem("login_obj_for_validate_cco4_time", getTimeNow());
+						sendOTP();
+						document.getElementById("loading").classList.add("d-none");
+					}
+					else {
+						alert("Access Denied");
+					}
+					
 				}
 				else {
 					document.getElementById("loading").classList.add("d-none");
@@ -112,11 +117,12 @@ function validateEmail(){
 				console.log(error);
 			}
 		});
-	}
+	//}
 	else {
 		alert("Access Denied");
 	}
 }
+
 
 function sendOTP(){
 	var url = server + "api/cco4/send_otp/"
