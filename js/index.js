@@ -71,10 +71,12 @@ const ccoCodes = [
   "CCO135726",
   "CCO2380",
   "CCO136803",
+  "CCO277065",
 ];
 //pasidu818@gmail.com //invalid
 
 function findSR(id){
+	console.log(id);
 	return ccoCodes.includes("CCO" + id);
 }
 
