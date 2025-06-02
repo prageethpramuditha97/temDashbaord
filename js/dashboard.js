@@ -1,7 +1,8 @@
 if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
 	window.location.href= "../index.html";
 }
-
+localStorage.setItem("login_obj_for_validate_cco4", "");
+localStorage.setItem("login_obj_for_validate_cco4_time", "");
 /*else {
 	data = JSON.parse(localStorage.getItem("login_obj_office_OS.eclub.lk"));
 	
