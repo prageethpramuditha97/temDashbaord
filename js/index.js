@@ -120,7 +120,6 @@ function validateEmail(){
 	//}
 }
 
-
 function sendOTP(){
 	var url = server + "api/cco4/send_otp/"
 	$.ajax({
