@@ -124,9 +124,6 @@ function getDetails(){
 				if(resultData.subscription == "half"){
 					document.getElementById("std_avtivation").classList.add("bg-yellow-100");
 					document.getElementById("std_avtivation").classList.add("text-yellow-800");
-					document.getElementById("std_profile_section").innerHTML += `<button class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-800 transition duration-300 ms-4" onclick="deletePayID(${resultData.payid})">
-																				<i class="fa fa-credit-card"></i>
-																			</button>`;
 					updateProgress(3); 
 					
 					document.getElementById("lvl1").innerHTML = resultData.join_date.split(" ")[0];
@@ -137,9 +134,6 @@ function getDetails(){
 				if(resultData.subscription == "pending"){
 					document.getElementById("std_avtivation").classList.add("bg-red-100");
 					document.getElementById("std_avtivation").classList.add("text-red-800");
-					document.getElementById("std_profile_section").innerHTML += `<button class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-800 transition duration-300 ms-4" onclick="deletePayID(${resultData.payid})">
-																				<i class="fa fa-credit-card"></i>
-																			</button>`;
 					if(resultData.join_date != null){
 						document.getElementById("lvl1").innerHTML = resultData.join_date.split(" ")[0];
 					}
