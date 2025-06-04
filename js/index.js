@@ -82,7 +82,6 @@ const ccoCodes = [
   "CCO455497",
   "CCO422994",
   "CCO85581",
-  "CCO1030",
 ];
 //pasidu818@gmail.com //invalid
 
