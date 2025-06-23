@@ -1,6 +1,13 @@
 if(localStorage.getItem("login_obj_for_validate_support") == "" || localStorage.getItem("login_obj_for_validate_support") == null){
 	window.location.href= "./index.html";
 }
+else {
+	data = JSON.parse(localStorage.getItem("login_obj_for_validate_support"));
+	
+	document.getElementById("profile_pic").src = data.profile_image;
+	document.getElementById("loggin_name").innerHTML = data.firstname + " " + data.lastname;
+	document.getElementById("logginID").innerHTML = data.username;
+}
 
 function logOut(){
 	localStorage.setItem("login_obj_for_validate_support", "");
