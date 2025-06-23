@@ -36,7 +36,7 @@ function getTimeNow() {
 
 
 
-[
+const ccoCodes = [
   "CCO205",
   "CCO238",
   "CCO1030",
@@ -90,7 +90,7 @@ function getTimeNow() {
   "CCO455497",
   "CCO235619",
   "CCO68954",
-  "CCO41047"
+  "CCO41047",
 ]
 
 //pasidu818@gmail.com //invalid
