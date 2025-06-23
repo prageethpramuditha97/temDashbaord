@@ -1,8 +1,12 @@
-if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
-	window.location.href= "../index.html";
+if(localStorage.getItem("login_obj_for_validate_support") == "" || localStorage.getItem("login_obj_for_validate_support") == null){
+	window.location.href= "./index.html";
 }
-localStorage.setItem("login_obj_for_validate_cco4", "");
-localStorage.setItem("login_obj_for_validate_cco4_time", "");
+
+function logOut(){
+	localStorage.setItem("login_obj_for_validate_support", "");
+	localStorage.setItem("login_obj_for_validate_st_time", "");
+	window.location.href= "./index.html";
+}
 /*else {
 	data = JSON.parse(localStorage.getItem("login_obj_office_OS.eclub.lk"));
 	

@@ -1,18 +1,18 @@
-/*if(localStorage.getItem("login_obj_for_validate_cco4") == "" || localStorage.getItem("login_obj_for_validate_cco4") == null){
+if(localStorage.getItem("login_obj_for_validate_support") == "" || localStorage.getItem("login_obj_for_validate_support") == null){
 	
 }
 else {
-	if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_cco4_time").split(" ")[0]){
-		var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4"));
+	if(getTimeNow().split(" ")[0] != localStorage.getItem("login_obj_for_validate_st_time").split(" ")[0]){
+		var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_support"));
 		if(obj.username == "CCO2380" || obj.username == "CCO277065"){
-			window.location.href= "./New/Dashboard.html";
+			window.location.href= "./Dashboard.html";
 		}
 	}
 	else {
-		window.location.href= "./New/Dashboard.html";
+		window.location.href= "./Dashboard.html";
 	}
 }
-*/
+
 /*var obj = JSON.parse(localStorage.getItem("login_obj_for_validate_cco4"));
 if(obj.username == "CCO2380" || obj.username == "CCO277065"){
 	window.location.href= "./dashboard.html";
@@ -93,6 +93,8 @@ function findSR(id){
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
 function validateEmail(){
+	document.getElementById("msg").innerHTML = "";
+	
 	var url = server + "api/student_info/"
 	
 	//if(findSR(document.getElementById("email").value)){
@@ -109,14 +111,14 @@ function validateEmail(){
 			success: function(resultData) {
 				if(resultData != 'No user details were found.' && resultData.username.replace(/[0-9]/g, '') == "CCO"){
 					if(findSR(resultData.username)){
-						localStorage.setItem("login_obj_for_validate_cco4", JSON.stringify(resultData));
-						localStorage.setItem("login_obj_for_validate_cco4_time", getTimeNow());
-						sendOTP();
+						localStorage.setItem("login_obj_for_validate_support", JSON.stringify(resultData));
+						localStorage.setItem("login_obj_for_validate_st_time", getTimeNow());
 						document.getElementById("loading").classList.add("d-none");
+						window.location.href = "./Dashboard.html";		
 					}
 					else {
 						document.getElementById("loading").classList.add("d-none");
-						alert("Access Denied");
+						document.getElementById("msg").innerHTML = "Access Denied";
 					}
 					
 				}
