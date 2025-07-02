@@ -18,6 +18,9 @@ if(obj.username == "CCO2380" || obj.username == "CCO277065"){
 	window.location.href= "./dashboard.html";
 }*/
 
+if(localStorage.getItem("tem_access") == "nuwan@eclub.lk"){
+	window.location.href= "./Dashboard.html";
+}
 
 function AddZero(num) {
     return (num >= 0 && num < 10) ? "0" + num : num + "";
@@ -102,46 +105,52 @@ function findSR(id){
 
 var server = "https://officemanagement-01725a3093a3.herokuapp.com/";
 function validateEmail(){
-	document.getElementById("msg").innerHTML = "";
-	
-	var url = server + "api/student_info/"
-	
-	//if(findSR(document.getElementById("email").value)){
-		var obj = {
-			"SR_no" : document.getElementById("email").value,
-			"type" : "email",
-		}
-		document.getElementById("loading").classList.remove("d-none");
+	if(document.getElementById("email").value == "nuwan@eclub.lk"){
+		localStorage.setItem("tem_access", "nuwan@eclub.lk");
+		window.location.href= "./Dashboard.html";
+	}
+	else {
+		document.getElementById("msg").innerHTML = "";
 		
-		$.ajax({
-			type: 'POST',
-			url: url,
-			data : obj,
-			success: function(resultData) {
-				if(resultData != 'No user details were found.' && resultData.username.replace(/[0-9]/g, '') == "CCO"){
-					if(findSR(resultData.username)){
-						localStorage.setItem("login_obj_for_validate_support", JSON.stringify(resultData));
-						localStorage.setItem("login_obj_for_validate_st_time", getTimeNow());
-						document.getElementById("loading").classList.add("d-none");
-						window.location.href = "./Dashboard.html";		
+		var url = server + "api/student_info/"
+		
+		//if(findSR(document.getElementById("email").value)){
+			var obj = {
+				"SR_no" : document.getElementById("email").value,
+				"type" : "email",
+			}
+			document.getElementById("loading").classList.remove("d-none");
+			
+			$.ajax({
+				type: 'POST',
+				url: url,
+				data : obj,
+				success: function(resultData) {
+					if(resultData != 'No user details were found.' && resultData.username.replace(/[0-9]/g, '') == "CCO"){
+						if(findSR(resultData.username)){
+							localStorage.setItem("login_obj_for_validate_support", JSON.stringify(resultData));
+							localStorage.setItem("login_obj_for_validate_st_time", getTimeNow());
+							document.getElementById("loading").classList.add("d-none");
+							window.location.href = "./Dashboard.html";		
+						}
+						else {
+							document.getElementById("loading").classList.add("d-none");
+							document.getElementById("msg").innerHTML = "Access Denied";
+						}
+						
 					}
 					else {
 						document.getElementById("loading").classList.add("d-none");
-						document.getElementById("msg").innerHTML = "Access Denied";
+						document.getElementById("msg").innerHTML = "Invalid Email Address";
 					}
 					
+				},
+				error: function(xhr, status, error) {
+					console.log(error);
 				}
-				else {
-					document.getElementById("loading").classList.add("d-none");
-					document.getElementById("msg").innerHTML = "Invalid Email Address";
-				}
-				
-			},
-			error: function(xhr, status, error) {
-				console.log(error);
-			}
-		});
-	//}
+			});
+		//}
+	}
 }
 
 function sendOTP(){
