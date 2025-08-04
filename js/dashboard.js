@@ -160,9 +160,9 @@ function getDetails(){
 					updateProgress(1); 
 				}
 				document.getElementById("std_marketplace").innerHTML = resultData.marketplace; 
-				
-				document.getElementById("spnsr_name").innerHTML = resultData.sponsor_name; 
-				document.getElementById("spnsr_cco").innerHTML = "CCO" + resultData.sponsor; 
+
+				document.getElementById("spnsr_name").innerHTML = resultData.sponsor.fullname;
+				document.getElementById("spnsr_cco").innerHTML = "CCO" + resultData.sponsor.id;
 				document.getElementById("spnsr_placement").innerHTML = "Placement : " + resultData.placement_id; 
 				
 				
@@ -326,3 +326,4 @@ window.addEventListener("keypress", function(event) {
 	}
   
 });
+
