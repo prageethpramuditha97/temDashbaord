@@ -112,7 +112,7 @@ function getDetails(){
 		success: function(resultData) {
 			//document.getElementById("accountsList").innerHTML  = "";
 			if(resultData != 'No user details were found.'){
-				statusOfFindData == "Record Founded";
+				statusOfFindData = "Record Founded";
 				spinner.classList.add("hidden");
 				document.getElementById("std_sr").innerHTML = resultData.username;
 				document.getElementById("std_name").innerHTML = resultData.firstname + " " + resultData.lastname;
@@ -219,7 +219,7 @@ function getDetails(){
 			else {
 				spinner.classList.add("hidden");
 				alert("No user found");
-				statusOfFindData == "Record Not-Founded";
+				statusOfFindData = "Record Not-Founded";
 			}
 
 			var obj2 = {
@@ -343,6 +343,7 @@ window.addEventListener("keypress", function(event) {
 	}
   
 });
+
 
 
 
