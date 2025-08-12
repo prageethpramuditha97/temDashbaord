@@ -221,6 +221,21 @@ function getDetails(){
 				alert("No user found");
 				statusOfFindData == "Record Not-Founded";
 			}
+
+			var obj2 = {
+				"data" : document.getElementById("input").value + " was searched by " + document.getElementById("loggin_name").innerHTML + "( " + 
+					document.getElementById("logginID").innerHTML + " )" + " on",
+				"result" : statusOfFindData
+			}
+			let url2 = server + "api/log/"
+			$.ajax({
+				type: 'POST',
+				url: url2,
+				data : obj2,
+				success: function(resultData) {
+					
+				}
+			});
 			
 		},
 		error: function(xhr, status, error) {
@@ -228,19 +243,7 @@ function getDetails(){
 		}
 	});
 
-	var obj2 = {
-		"data" : document.getElementById("input").value + " was searcedh by " + document.getElementById("loggin_name").innerHTML + " on",
-		"result" : statusOfFindData
-	}
-	let url2 = server + "api/log/"
-	$.ajax({
-		type: 'POST',
-		url: url2,
-		data : obj2,
-		success: function(resultData) {
-			
-		}
-	});
+	
 }
 
 // Function to update the progress bar and step circles
@@ -340,5 +343,6 @@ window.addEventListener("keypress", function(event) {
 	}
   
 });
+
 
 
