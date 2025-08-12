@@ -104,7 +104,7 @@ function getDetails(){
 		"SR_no" : input,
 		"type" : filter,
 	}
-		
+	let statusOfFindData = "";
 	$.ajax({
 		type: 'POST',
 		url: url,
@@ -112,6 +112,7 @@ function getDetails(){
 		success: function(resultData) {
 			//document.getElementById("accountsList").innerHTML  = "";
 			if(resultData != 'No user details were found.'){
+				statusOfFindData == "Record Founded";
 				spinner.classList.add("hidden");
 				document.getElementById("std_sr").innerHTML = resultData.username;
 				document.getElementById("std_name").innerHTML = resultData.firstname + " " + resultData.lastname;
@@ -218,6 +219,7 @@ function getDetails(){
 			else {
 				spinner.classList.add("hidden");
 				alert("No user found");
+				statusOfFindData == "Record Not-Founded";
 			}
 			
 		},
@@ -225,8 +227,20 @@ function getDetails(){
 			console.log(error);
 		}
 	});
-	
-	
+
+	var obj2 = {
+		"data" : document.getElementById("input").value + " was searcedh by " + document.getElementById("loggin_name").innerHTML + " on",
+		"result" : statusOfFindData
+	}
+	let url2 = server + "api/log/"
+	$.ajax({
+		type: 'POST',
+		url: url2,
+		data : obj2,
+		success: function(resultData) {
+			
+		}
+	});
 }
 
 // Function to update the progress bar and step circles
@@ -326,4 +340,5 @@ window.addEventListener("keypress", function(event) {
 	}
   
 });
+
 
